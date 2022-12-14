@@ -4,6 +4,7 @@ import { CountryType } from '../utils/types'
 // gql
 import { useQuery } from '@apollo/client'
 import { GET_COUNTRIES } from '../utils/queries'
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 
 const useApp = () => {
   const [state, setState] = useState([])

@@ -1,9 +1,7 @@
 import {
   BorderBottomBox,
   FlexBox,
-  IconButton,
   PaddedText,
-  StyledCol,
   StyledText,
 } from './StyledComponents'
 
