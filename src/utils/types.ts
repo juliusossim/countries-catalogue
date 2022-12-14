@@ -13,7 +13,8 @@ export interface Prop {
   country: CountryType
 }
 export interface SearchType {
-  filterCountry: Function
+  filterCountry: () => void
+  debouncedSearch: () => void
 }
 
 export interface ContinentType {

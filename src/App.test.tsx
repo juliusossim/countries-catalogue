@@ -20,14 +20,14 @@ const mocks = [
   }
 ];
 
-const mockError = [
-  {
-    request: {
-      query: GET_COUNTRIES
-    },
-    error: new Error('An error occurred')
-  }
-];
+// const mockError = [
+//   {
+//     request: {
+//       query: GET_COUNTRIES
+//     },
+//     error: new Error('An error occurred')
+//   }
+// ];
 
 
 test('renders', async () => {

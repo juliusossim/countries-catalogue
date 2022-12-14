@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { SearchType } from '../utils/types'
 import {
   FlexBox,
@@ -9,8 +8,7 @@ import {
   BorderBottomBox,
 } from './StyledComponents'
 
-const Search = ({ filterCountry }: SearchType) => {
-  const [state, setState] = useState('')
+const Search = ({ filterCountry, debouncedSearch }: SearchType) => {
   return (
     <BorderBottomBox paddingLeft='10vw' paddingBottom='5vh' paddingRight='10vw' margin='30px'>
       <StyledText margin='20px' fontSize='32px'>
@@ -24,10 +22,10 @@ const Search = ({ filterCountry }: SearchType) => {
             placeholder='search'
             width='70vw'
             height='40px'
-            onChange={(e: any) => setState(e.target.value)}
+            onChange={debouncedSearch}
           />
         </Box>
-        <StyledButton data-testid='searchBtn' onClick={() => filterCountry(state)}>Search</StyledButton>
+        <StyledButton data-testid='searchBtn' onClick={filterCountry}>Search</StyledButton>
       </FlexBox>
     </BorderBottomBox>
   )

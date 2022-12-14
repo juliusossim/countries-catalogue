@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { CountriesType } from './../utils/types';
+import { useEffect, useMemo, useState } from 'react'
+import debounce from 'lodash/debounce'
 import { CountryType } from '../utils/types'
 // gql
 import { useQuery } from '@apollo/client'
@@ -12,21 +14,31 @@ const useApp = () => {
   const [search, setSearch] = useState('')
 
   useEffect(() => {
+    // filterCountry();
     search !== '' ? setState(filterFront(search)) : setState(cachedData)
   }, [search])
 
   useEffect(() => {
-    data?.countries?.length > 0 && setCachedData(data.countries)
+    data?.countries?.length > 0 && handleStates()
   }, [loading])
 
-  const filterFront = (term: string) =>
-    cachedData?.filter((country: CountryType) => country?.name?.includes(term))
 
-  const filterCountry = (term: string) => {
-    setSearch(term)
-    refetch({ search: { eq: term } })
+  const handleStates = () => {
+    data?.countries?.length >= 249 && setCachedData(data?.countries)
+    setState(data?.countries)
   }
+  const filterFront = (term: string) =>
+    cachedData?.filter((country: CountryType) => country?.name?.toLocaleLowerCase()?.includes(term?.toLocaleLowerCase()))
 
-  return { data, loading, filterCountry, state, error }
+  const filterCountry = () => refetch({ search: { eq: search } })
+
+  const changeSearch = (e: any) => setSearch(e.target.value);
+
+  const debouncedSearch = useMemo(
+    () => debounce(changeSearch, 300)
+  , []);
+
+
+  return { loading, filterCountry, state, error, debouncedSearch }
 }
 export default useApp
