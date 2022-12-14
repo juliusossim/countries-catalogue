@@ -1,4 +1,3 @@
-import { CountriesType } from './../utils/types';
 import { useEffect, useMemo, useState } from 'react'
 import debounce from 'lodash/debounce'
 import { CountryType } from '../utils/types'
@@ -13,32 +12,37 @@ const useApp = () => {
   const [cachedData, setCachedData] = useState([])
   const [search, setSearch] = useState('')
 
+  // update state with cached data or with eager filter results
   useEffect(() => {
-    // filterCountry();
-    search !== '' ? setState(filterFront(search)) : setState(cachedData)
+   search === '' ? setState(cachedData) : setState(filterFront(search)) 
   }, [search])
 
+  // cache data, update state with query or filter results.
   useEffect(() => {
-    data?.countries?.length > 0 && handleStates()
-  }, [loading])
-
+    handleStates();
+   }, [data])
 
   const handleStates = () => {
-    data?.countries?.length >= 249 && setCachedData(data?.countries)
+    data?.countries?.length >= 249 && setCachedData(data?.countries) // set cached when whole
     setState(data?.countries)
   }
+  // filter cached data at the front
   const filterFront = (term: string) =>
-    cachedData?.filter((country: CountryType) => country?.name?.toLocaleLowerCase()?.includes(term?.toLocaleLowerCase()))
+    cachedData?.filter((country: CountryType) =>
+      country?.name?.toLocaleLowerCase()?.includes(term?.toLocaleLowerCase()),
+    )
 
+  // query by search term
   const filterCountry = () => refetch({ search: { eq: search } })
 
-  const changeSearch = (e: any) => setSearch(e.target.value);
+  const changeSearch = (e: any) => setSearch(e.target.value) // set search term
 
   const debouncedSearch = useMemo(
-    () => debounce(changeSearch, 300)
-  , []);
+    // set search term after 3 seconds of inactivity
+    () => debounce(changeSearch, 300),
+    [],
+  )
 
-
-  return { loading, filterCountry, state, error, debouncedSearch }
+  return { loading, filterCountry, state, error, debouncedSearch } // expose for usage
 }
 export default useApp

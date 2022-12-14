@@ -1,8 +1,10 @@
 // components
 import Header from './components/Header'
 import Search from './components/Search'
-import { Loader, StyledLayout } from './components/StyledComponents'
 import CountryMap from './components/CountryMap'
+// styled components
+import { Loader, StyledLayout } from './components/StyledComponents'
+// hooks
 import useApp from './hooks/useApp'
 
 function App() {
@@ -12,14 +14,14 @@ function App() {
     <StyledLayout>
       <Header />
       <Search filterCountry={filterCountry} debouncedSearch={debouncedSearch} />
-
-      {error  && alert(error.message)}
+      {/* conditional rendering */}
+      {error && alert(error.message)}
       {loading ? (
         <Loader data-testid='loading' textAlign='center'>
           Loading ....
         </Loader>
       ) : (
-        <CountryMap data-testid='list' countries={state} />
+        <CountryMap data-testid='list' countries={state} /> // country list
       )}
     </StyledLayout>
   )

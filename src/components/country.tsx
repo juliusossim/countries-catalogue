@@ -5,9 +5,15 @@ const Country = ({ country }: Prop) => (
   <Box paddingLeft='10vw' paddingBottom='5vh' paddingRight='10vw' margin='30px'>
     <FlexBox>
       <Box>{country.emoji}</Box>
-      <PaddedText>{country.name}</PaddedText>
+      <PaddedText fontSize='20px'>{country.name}</PaddedText>
     </FlexBox>
-    <StyledText margin='20px'>{`Continent: ${country.continent?.name}`}</StyledText>
+  <PaddedText>
+  <FlexBox>
+   <StyledText>Continent</StyledText>
+    <StyledText fontSize='20px' paddingLeft='10px'>{country.continent?.name}</StyledText>
+   </FlexBox>
+  </PaddedText>
+
     <StyledButton>See Details ...</StyledButton>
   </Box>
 )

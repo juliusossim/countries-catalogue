@@ -25,7 +25,9 @@ const Search = ({ filterCountry, debouncedSearch }: SearchType) => {
             onChange={debouncedSearch}
           />
         </Box>
-        <StyledButton data-testid='searchBtn' onClick={filterCountry}>Search</StyledButton>
+        <StyledButton data-testid='searchBtn' onClick={filterCountry}>
+          Search
+        </StyledButton>
       </FlexBox>
     </BorderBottomBox>
   )

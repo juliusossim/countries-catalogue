@@ -8,6 +8,7 @@ export const StyledText = styled.div`
   width: ${(props: PropsType) => props.width};
   text-align: ${(props: PropsType) => props.textAlign};
   align-items: center;
+  padding-left:  ${(props: PropsType) => props.paddingLeft};
   margin-bottom: ${(props: PropsType) => props.margin};
   color: ${(props: PropsType) => props.textColor};
 `
@@ -21,11 +22,15 @@ export const Loader = styled(StyledText)`
 `
 
 export const StyledLayout = styled.section`
-  max-height: 100vh;
-  height: 100vh;
-  overflow-y: auto;
+  min-height: 90vh;
   width: 99vw;
   border: solid 1px;
+`
+export const ScrollLayout = styled.section`
+  height: 70vh;
+  max-height: 70vh;
+  overflow-y: auto;
+  width: 99vw;
 `
 export const Box = styled.div`
   align-items: center;
@@ -57,6 +62,9 @@ export const StyledButton = styled.button`
   font-family: 'Mogra', cursive;
   padding: 10px;
   min-width: 10vw;
+  transition: transform 250ms;
+  transition: all 0.5s ease;
+
   color: ${(props: PropsType) => props.color || (!props.noDefaults && '#fff')};
   border: ${(props: PropsType) => props.border || (!props.noDefaults && 'none')};
   background: ${(props: PropsType) => props.background || (!props.noDefaults && '#000')};
@@ -65,6 +73,7 @@ export const StyledButton = styled.button`
     border-radius: ${(props: PropsType) => props.borderRadius || (!props.noDefaults && '10px')};
     background: ${(props: PropsType) => props.hoverBackground || (!props.noDefaults && '#4e5133')};
     color: ${(props: PropsType) => props.hoverColor};
+    transform: translateY(-10px);
     transition: all 0.5s ease;
   }
 
