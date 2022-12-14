@@ -1,21 +1,26 @@
+// components
+import Header from './components/Header'
+import Search from './components/Search'
+import { Loader, StyledLayout, StyledText } from './components/StyledComponents'
+import CountryMap from './components/CountryMap'
+import useApp from './hooks/useApp'
 
 function App() {
+  const { filterCountry, loading, data, state, error } = useApp()
+
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledLayout>
+      <Header />
+      <Search filterCountry={filterCountry} />
+      {error  && alert(error.message)}
+      {loading ? (
+        <Loader data-testid='loading' textAlign='center'>
+          Loading ....
+        </Loader>
+      ) : (
+        <CountryMap data-testid='list' countries={data?.countries?.length > 0 ? data?.countries : state} />
+      )}
+    </StyledLayout>
   )
 }
 
