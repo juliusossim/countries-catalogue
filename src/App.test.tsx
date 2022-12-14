@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 import App from './App'
 import { GET_COUNTRIES } from './utils/queries'

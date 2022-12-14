@@ -1,6 +1,6 @@
 import { CountriesType, CountryType } from '../utils/types'
 import Country from './country'
-import { Box, ScrollLayout } from './StyledComponents'
+import { ScrollLayout } from './StyledComponents'
 
 const CountryMap = ({ countries }: CountriesType) => {
   return (
